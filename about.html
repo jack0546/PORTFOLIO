@@ -1,137 +1,383 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alfred Akwetey Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me | Alfred Akwetey</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Background Image */
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('portbg.avif');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            line-height: 1.7;
+        }
 
-<style>
-body{
-    font-family: Arial, sans-serif;
-    margin:0;
-    background: linear-gradient(120deg,#fcf9f9,#201313);
-    color:white;
-}
+        /* Background Overlay */
+        .bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(30, 64, 175, 0.85) 100%);
+            z-index: -1;
+        }
 
-nav{
-    display:flex;
-    justify-content:center;
-    gap:30px;
-    background:#150249;
-    padding:15px;
-}
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 8%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
 
-nav a{
-    color:white;
-    text-decoration:none;
-    font-weight:bold;
-}
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
 
-section{
-    padding:60px 15%;
-}
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
 
-h1,h2{
-    margin-bottom:20px;
-}
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
 
-.home{
-    text-align:center;
-}
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+        }
 
-.skills ul{
-    list-style:none;
-    padding:0;
-}
+        .nav-links a:hover {
+            color: #0ea5e9;
+        }
 
-.skills li{
-    background:rgba(0, 0, 0, 0.1);
-    margin:10px 0;
-    padding:10px;
-    border-radius:6px;
-}
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.75rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: none;
+        }
 
-.contact{
-    text-align:center;
-}
+        .btn-primary {
+            background: #1e40af;
+            color: white;
+        }
 
-footer{
-    text-align:center;
-    padding:20px;
-    background:#111;
-}
-</style>
+        .btn-primary:hover {
+            background: #1e3a8a;
+            transform: translateY(-1px);
+        }
 
+        /* Main Content */
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 8%;
+        }
+
+        /* Sections */
+        section {
+            padding: 3rem;
+            margin-bottom: 2rem;
+            background: rgba(255, 255, 255, 0.97);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        h1, h2 {
+            margin-bottom: 1.5rem;
+            color: #0f172a;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        h2 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: #1e40af;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        p {
+            color: #475569;
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        /* Home Section */
+        .home {
+            text-align: center;
+            padding: 4rem 3rem;
+        }
+
+        .home h1 {
+            margin-bottom: 1rem;
+        }
+
+        .home p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 0.75rem;
+        }
+
+        .home .subtitle {
+            color: #1e40af;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        /* Skills */
+        .skills ul {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .skills li {
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            margin: 0;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 500;
+            color: #1e40af;
+            transition: all 0.2s ease;
+            border: 1px solid #cbd5e1;
+        }
+
+        .skills li:hover {
+            background: #1e40af;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
+        }
+
+        /* Contact */
+        .contact {
+            text-align: center;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border-color: #3b82f6;
+        }
+
+        .contact-item h4 {
+            color: #64748b;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-item p {
+            color: #0f172a;
+            font-weight: 600;
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem 8%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            margin-top: 2rem;
+        }
+
+        footer p {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .footer-profile {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 5%;
+            }
+
+            .content-wrapper {
+                padding: 2rem 5%;
+            }
+
+            section {
+                padding: 2rem 1.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .home {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="bg-overlay"></div>
 
-<nav>
+    <nav>
+        <div class="logo"><img src="port.png" alt="Alfred Akwetey" class="logo-img"> AA</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="index.html#contact" class="btn btn-primary">Contact</a></li>
+        </ul>
+    </nav>
 
-<a href="#about">About</a>
+    <div class="content-wrapper">
+        <section id="home" class="home">
+            <h1>Alfred Akwetey</h1>
+            <p class="subtitle">Web Developer | Graphic Designer | Computer Science Graduate</p>
+            <p>I design and develop modern websites and digital experiences for businesses and individuals.</p>
+        </section>
 
-</nav>
+        <section id="about">
+            <h2>About Me</h2>
 
-<section id="home" class="home">
-<h1>Alfred Akwetey</h1>
-<p>Web Developer | Graphic Designer | Computer Science Graduate</p>
-<p>I design and develop modern websites and digital experiences for businesses and individuals.</p>
-</section>
+            <p>
+                My name is Alfred Akwetey, a passionate Computer Science graduate, Graphic Designer, and Web Developer with a strong interest in creating modern and user-friendly digital experiences. At 25 years old, I have developed a solid foundation in technology and creative design, combining technical skills with creativity to deliver impactful digital solutions.
+            </p>
 
-<section id="about">
-<h2>About Me</h2>
+            <p>
+                My journey into technology started with my studies in Computer Science where I gained knowledge in programming, problem-solving, and software development. During my academic journey, I discovered my passion for web development and graphic design. These fields allow me to combine logical thinking with creativity to build websites and visual designs that help businesses grow online.
+            </p>
 
-<p>
-My name is Alfred Akwetey, a passionate Computer Science graduate, Graphic Designer, and Web Developer with a strong interest in creating modern and user-friendly digital experiences. At 25 years old, I have developed a solid foundation in technology and creative design, combining technical skills with creativity to deliver impactful digital solutions.
-</p>
+            <p>
+                As a web developer, I focus on creating responsive and modern websites that work perfectly across different devices. I enjoy transforming ideas into functional websites that are visually appealing and easy to use. My goal is always to design websites that not only look professional but also provide a smooth user experience.
+            </p>
 
-<p>
-My journey into technology started with my studies in Computer Science where I gained knowledge in programming, problem-solving, and software development. During my academic journey, I discovered my passion for web development and graphic design. These fields allow me to combine logical thinking with creativity to build websites and visual designs that help businesses grow online.
-</p>
+            <p>
+                In addition to web development, I am also a graphic designer who understands the importance of visual communication. I create logos, branding materials, social media designs, and digital graphics that help businesses communicate their identity clearly and professionally.
+            </p>
 
-<p>
-As a web developer, I focus on creating responsive and modern websites that work perfectly across different devices. I enjoy transforming ideas into functional websites that are visually appealing and easy to use. My goal is always to design websites that not only look professional but also provide a smooth user experience.
-</p>
+            <p>
+                I am a dedicated professional who believes in continuous learning. Technology and design are always evolving, so I constantly improve my skills and stay updated with the latest tools and trends in web development and design.
+            </p>
+        </section>
 
-<p>
-In addition to web development, I am also a graphic designer who understands the importance of visual communication. I create logos, branding materials, social media designs, and digital graphics that help businesses communicate their identity clearly and professionally.
-</p>
+        <section id="skills" class="skills">
+            <h2>My Skills</h2>
 
-<p>
-I am a dedicated professional who believes in continuous learning. Technology and design are always evolving, so I constantly improve my skills and stay updated with the latest tools and trends in web development and design.
-</p>
+            <ul>
+                <li>Website Design</li>
+                <li>Web Development</li>
+                <li>HTML, CSS & Basic JavaScript</li>
+                <li>Graphic Design</li>
+                <li>Logo Design & Branding</li>
+                <li>Responsive Website Development</li>
+                <li>User Interface (UI) Design</li>
+            </ul>
+        </section>
 
-</section>
+        <section id="contact" class="contact">
+            <h2>Contact Me</h2>
+            <p>If you need a professional website or graphic design work, feel free to contact me.</p>
 
-<section id="skills" class="skills">
-<h2>My Skills</h2>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <h4>Name</h4>
+                    <p>Alfred Akwetey</p>
+                </div>
+                <div class="contact-item">
+                    <h4>Phone</h4>
+                    <p>0532340875</p>
+                </div>
+                <div class="contact-item">
+                    <h4>Location</h4>
+                    <p>Ghana</p>
+                </div>
+                <div class="contact-item">
+                    <h4>Email</h4>
+                    <p>narhsnazzisco@gmail.com</p>
+                </div>
+            </div>
+        </section>
+    </div>
 
-<ul>
-<li>Website Design</li>
-<li>Web Development</li>
-<li>HTML, CSS & Basic JavaScript</li>
-<li>Graphic Design</li>
-<li>Logo Design & Branding</li>
-<li>Responsive Website Development</li>
-<li>User Interface (UI) Design</li>
-</ul>
-
-</section>
-
-<section id="contact" class="contact">
-<h2>Contact Me</h2>
-
-<p><strong>Name:</strong> Alfred Akwetey</p>
-<p><strong>Phone:</strong> 0532340875</p>
-<p><strong>Location:</strong> Ghana</p>
-<p><strong>Email:</strong> narhsnazzisco@gmail.com</p>
-
-<p>If you need a professional website or graphic design work, feel free to contact me.</p>
-
-</section>
-
-<footer>
-<p>© 2026 Alfred Akwetey | Portfolio Website</p>
-</footer>
-
+    <footer>
+        <img src="port.png" alt="Alfred Akwetey" class="footer-profile">
+        <p>© 2026 Alfred Akwetey | Portfolio Website</p>
+    </footer>
 </body>
 </html>
