@@ -51,14 +51,14 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(15, 23, 42, 0.92) 0%, rgba(30, 64, 175, 0.85) 100%);
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.7) 0%, rgba(30, 64, 175, 0.6) 100%);
             z-index: -1;
         }
 
         .content-wrapper {
             position: relative;
             z-index: 1;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.85);
             margin: 0;
             min-height: 100vh;
         }
@@ -227,8 +227,8 @@
 
         .profile-frame {
             position: relative;
-            width: 340px;
-            height: 420px;
+            width: 420px;
+            height: 520px;
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
@@ -248,7 +248,7 @@
             padding: 5rem 8%;
             max-width: 1400px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.8);
             border-radius: 12px;
             margin-bottom: 2rem;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -462,7 +462,7 @@
 
         /* Contact Section */
         #contact {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.8);
             border-radius: 12px;
             margin-bottom: 0;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
@@ -597,12 +597,6 @@
                 width: 280px;
                 height: 350px;
             }
-
-            .about-container,
-            .contact-content {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
         }
 
         @media (max-width: 768px) {
@@ -672,8 +666,8 @@
             }
 
             .profile-frame {
-                width: 240px;
-                height: 300px;
+                width: 320px;
+                height: 400px;
             }
 
             .about-stats {
@@ -685,9 +679,168 @@
                 font-size: 0.875rem;
             }
         }
+
+        /* Galaxy Background - Permanent */
+        .galaxy-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 800px;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        /* Galaxy Loader - Shows on refresh */
+        .loader-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 800px;
+            overflow: hidden;
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .loader-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .galaxy,
+        .galaxy-loader {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            transform-style: preserve-3d;
+            animation: rotateGalaxy 8s linear infinite;
+        }
+
+        .star,
+        .galaxy .star,
+        .galaxy-loader .star {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8);
+        }
+
+        .galaxy .star:nth-child(1),
+        .galaxy-loader .star:nth-child(1) { top: 20%; left: 40%; transform: translateZ(50px); }
+        .galaxy .star:nth-child(2),
+        .galaxy-loader .star:nth-child(2) { top: 70%; left: 60%; transform: translateZ(-40px); }
+        .galaxy .star:nth-child(3),
+        .galaxy-loader .star:nth-child(3) { top: 50%; left: 20%; transform: translateZ(70px); }
+        .galaxy .star:nth-child(4),
+        .galaxy-loader .star:nth-child(4) { top: 30%; left: 80%; transform: translateZ(-60px); }
+        .galaxy .star:nth-child(5),
+        .galaxy-loader .star:nth-child(5) { top: 80%; left: 30%; transform: translateZ(30px); }
+        .galaxy .star:nth-child(6),
+        .galaxy-loader .star:nth-child(6) { top: 10%; left: 60%; transform: translateZ(-20px); }
+        .galaxy .star:nth-child(7),
+        .galaxy-loader .star:nth-child(7) { top: 60%; left: 10%; transform: translateZ(80px); }
+        .galaxy .star:nth-child(8),
+        .galaxy-loader .star:nth-child(8) { top: 40%; left: 50%; transform: translateZ(-70px); }
+        .galaxy .star:nth-child(9),
+        .galaxy-loader .star:nth-child(9) { top: 75%; left: 75%; transform: translateZ(40px); }
+        .galaxy .star:nth-child(10),
+        .galaxy-loader .star:nth-child(10) { top: 25%; left: 25%; transform: translateZ(-50px); }
+        .galaxy .star:nth-child(11),
+        .galaxy-loader .star:nth-child(11) { top: 15%; left: 70%; transform: translateZ(60px); }
+        .galaxy .star:nth-child(12),
+        .galaxy-loader .star:nth-child(12) { top: 85%; left: 50%; transform: translateZ(-30px); }
+        .galaxy .star:nth-child(13),
+        .galaxy-loader .star:nth-child(13) { top: 45%; left: 85%; transform: translateZ(90px); }
+        .galaxy .star:nth-child(14),
+        .galaxy-loader .star:nth-child(14) { top: 55%; left: 15%; transform: translateZ(-80px); }
+        .galaxy .star:nth-child(15),
+        .galaxy-loader .star:nth-child(15) { top: 35%; left: 35%; transform: translateZ(20px); }
+
+        @keyframes rotateGalaxy {
+            from {
+                transform: rotateX(0deg) rotateY(0deg);
+            }
+            to {
+                transform: rotateX(360deg) rotateY(360deg);
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Galaxy Loader - Shows on refresh -->
+    <div class="loader-overlay" id="loader">
+        <div class="galaxy-loader">
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+        </div>
+    </div>
+    <script>
+        // Galaxy loader on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const loader = document.getElementById('loader');
+            // Hide loader after page loads
+            window.addEventListener('load', function() {
+                setTimeout(function() {
+                    loader.classList.add('hidden');
+                }, 1500); // Show for 1.5 seconds
+            });
+            // Also hide on any user interaction
+            document.addEventListener('click', function() {
+                loader.classList.add('hidden');
+            });
+            document.addEventListener('scroll', function() {
+                loader.classList.add('hidden');
+            }, { once: true });
+        });
+    </script>
+
+    <!-- Galaxy Background - Permanent -->
+    <div class="galaxy-background">
+        <div class="galaxy">
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+        </div>
+    </div>
     <div class="bg-overlay"></div>
     <!-- Navigation -->
     <nav>
